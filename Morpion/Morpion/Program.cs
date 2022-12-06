@@ -32,7 +32,18 @@ namespace Morpion
                     tour = Controles.VerifTouche(grilleMorpion, joueur1.Touche);
                     if(tour == true)
 			        {
-                        Console.WriteLine("La touche est valide");
+                        int x, y, compteurTouche = 0;
+                        for (y = 0; y < 3; y++)
+                        {
+                            for (x = 0; x < 3; x++)
+                            {
+                                compteurTouche++;
+                                if (compteurTouche == joueur1.Touche)
+                                {
+                                    grilleMorpion[y,x] = joueur1.Numero;
+                                }
+                            }
+                        }
                     }
                     else
                     {

@@ -22,11 +22,11 @@ public class Joueur
         this.Touche = 0;
         while (this.Touche == 0)
         {
-            Console.Write($"\n{this.Name}, tapes une touche entre 1 et 9 : ");
+            Console.Write($"{this.Name}, tapes une touche entre 1 et 9 : ");
             this.Touche = int.Parse(Console.ReadLine());
             if ((this.Touche > 9) || (this.Touche < 1))
             {
-                Console.Write("\nLa touche doit etre entre 1 et 9.");
+                Console.Write("La touche doit etre entre 1 et 9.\n");
                 this.Touche = 0;
             }
         }
