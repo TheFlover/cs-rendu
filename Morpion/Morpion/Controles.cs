@@ -1,5 +1,8 @@
 using System;
 
-/// <summary>
-/// Summary description for Class1
-/// </summary>
+namespace Morpion
+{
+    public class Controles
+    {
+    }
+}
