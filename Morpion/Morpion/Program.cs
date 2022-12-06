@@ -18,18 +18,21 @@ namespace Morpion
             joueur2.Numero = 2;
             joueur2.Score = 0;
 
+            Joueur[] joueurs = new Joueur[2] {joueur1, joueur2};
+            int joueurEnCours = 0;
+
             int[,] grilleMorpion = new int[3, 3] { { 1, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
 
             bool partie = true;
             while(partie == true)
             {
                 bool tour = false;
-                Affichage.Afficher(grilleMorpion, joueur1);
+                Affichage.Afficher(grilleMorpion, joueurs[joueurEnCours]);
                 while (tour == false)
                 {
                     
-                    joueur1.AppuiTouche();
-                    tour = Controles.VerifTouche(grilleMorpion, joueur1.Touche);
+                    joueurs[joueurEnCours].AppuiTouche();
+                    tour = Controles.VerifTouche(grilleMorpion, joueurs[joueurEnCours].Touche);
                     if(tour == true)
 			        {
                         int x, y, compteurTouche = 0;
@@ -38,9 +41,13 @@ namespace Morpion
                             for (x = 0; x < 3; x++)
                             {
                                 compteurTouche++;
-                                if (compteurTouche == joueur1.Touche)
+                                if (compteurTouche == joueurs[joueurEnCours].Touche)
                                 {
-                                    grilleMorpion[y,x] = joueur1.Numero;
+                                    grilleMorpion[y,x] = joueurs[joueurEnCours].Numero;
+
+
+                                    //Changement de joueur
+                                    joueurEnCours = (joueurEnCours == 0 ? 1 : 0);
                                 }
                             }
                         }
