@@ -14,7 +14,7 @@ public class Joueur
         this.Score = 0;
         this.Name = "Joueur";
         this.Numero = 0;
-        // this.Touche = 0;
+        this.Touche = 0;
     }
 
     public void AppuiTouche()
