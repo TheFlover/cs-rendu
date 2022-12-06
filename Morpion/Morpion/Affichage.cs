@@ -4,12 +4,14 @@ namespace Morpion
 {
     public class Affichage
     {
-        static public void Afficher(int[,] grille, Joueur joueur)
+        static public void Afficher(int[,] grille, Joueur[] joueurs, int joueurEnCours)
         {
             int x, y, compteur = 0;
 
             Console.Clear();
-            Console.Write("\n\n		Au tour de " + joueur.Name + "		Appuyez sur une de ces touches\n");
+            Console.Write("\n   Score " + joueurs[0].Name + " = " + joueurs[0].Score + "\n");
+            Console.Write("   Score " + joueurs[1].Name + " = " + joueurs[1].Score + "\n\n");
+            Console.Write("		Au tour de " + joueurs[joueurEnCours].Name + "		Appuyez sur une de ces touches\n");
             for (y = 0; y < 3; y++)
             {
                 Console.Write("\n		+---+---+---+			+---+---+---+\n		|");
@@ -41,7 +43,7 @@ namespace Morpion
                     Console.Write(" " + compteur + " |");
                 }
             }
-            Console.Write("\n		+---+---+---+			+---+---+---+\n\n\n");
+            Console.Write("\n		+---+---+---+			+---+---+---+\n\n");
         }
     }
 }

@@ -9,20 +9,22 @@ namespace Morpion
             Console.Title = "Morpion";
             
             Joueur joueur1 = new Joueur();
-            joueur1.Name = "Florian";
             joueur1.Numero = 1;
-            joueur1.Score = 0;
+            Console.Write("Entrez le nom du joueur 1 : ");
+            string? input = Console.ReadLine();
+            joueur1.Name = string.IsNullOrEmpty(input) ? "Joueur 1" : input;
 
             Joueur joueur2 = new Joueur();
-            joueur2.Name = "Nicolas";
             joueur2.Numero = 2;
-            joueur2.Score = 0;
+            Console.Write("Entrez le nom du joueur 2 : ");
+            input = Console.ReadLine();
+            joueur2.Name = string.IsNullOrEmpty(input) ? "Joueur 2" : input;
 
             Joueur[] joueurs = new Joueur[2] {joueur1, joueur2};
             int joueurEnCours = 0;
 
             int[,] grilleMorpion = new int[3, 3] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
-            Affichage.Afficher(grilleMorpion, joueurs[joueurEnCours]);
+            Affichage.Afficher(grilleMorpion, joueurs, joueurEnCours);
             
             bool jeu = true;
             while(jeu == true)
@@ -43,7 +45,7 @@ namespace Morpion
                 while(partie == true)
                 {
                     bool tour = true;
-                    Affichage.Afficher(grilleMorpion, joueurs[joueurEnCours]);
+                    Affichage.Afficher(grilleMorpion, joueurs, joueurEnCours);
                     while (tour == true)
                     {
                         joueurs[joueurEnCours].AppuiTouche();
@@ -61,13 +63,14 @@ namespace Morpion
 
                                         if (Controles.TestVictoire(grilleMorpion, joueurs[joueurEnCours].Numero) == true)
                                         {
-                                            Affichage.Afficher(grilleMorpion, joueurs[joueurEnCours]);
+                                            joueurs[joueurEnCours].Score += 1;
+                                            Affichage.Afficher(grilleMorpion, joueurs, joueurEnCours);
                                             Console.Write("Victoire de " + joueurs[joueurEnCours].Name + " !!!\n\n");
                                             partie = false;
                                         }
                                         if (Controles.TestEgalite(grilleMorpion) == true)
                                         {
-                                            Affichage.Afficher(grilleMorpion, joueurs[joueurEnCours]);
+                                            Affichage.Afficher(grilleMorpion, joueurs, joueurEnCours);
                                             Console.Write("Egalit\x82\\e...\n");
                                             partie = false;
                                         }
