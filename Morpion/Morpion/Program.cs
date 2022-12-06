@@ -68,10 +68,10 @@ namespace Morpion
                                             Console.Write("Victoire de " + joueurs[joueurEnCours].Name + " !!!\n\n");
                                             partie = false;
                                         }
-                                        if (Controles.TestEgalite(grilleMorpion) == true)
+                                        else if (Controles.TestEgalite(grilleMorpion) == true)
                                         {
                                             Affichage.Afficher(grilleMorpion, joueurs, joueurEnCours);
-                                            Console.Write("Egalit\x82\\e...\n");
+                                            Console.Write("Egalitee...\n");
                                             partie = false;
                                         }
                                     }

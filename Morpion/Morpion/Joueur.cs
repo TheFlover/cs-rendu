@@ -9,6 +9,7 @@ public class Joueur
     public string Name { get; set; }
     public int Numero { get; set; }
     public int Touche { get; set; }
+    
     public Joueur()
     {
         this.Score = 0;

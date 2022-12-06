@@ -1,10 +1,35 @@
-using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Morpion
 {
-    public class Affichage
+    public enum Symbole 
     {
-        static public void Afficher(int[,] grille, Joueur[] joueurs, int joueurEnCours)
+        SPACE,
+        CROIX,
+        ROND
+    }
+
+    public static class Affichage
+    {
+        public static string GetSymbole(string nom)
+        {
+            switch (nom)
+            {
+                case "SPACE":
+                    return " ";
+
+                case "CROIX":
+                    return "X";
+
+                case "ROND":
+                    return "O";
+
+                default:
+                    return " ";
+            }
+        }
+
+        public static void Afficher(int[,] grille, Joueur[] joueurs, int joueurEnCours)
         {
             int x, y, compteur = 0;
 
@@ -17,24 +42,26 @@ namespace Morpion
                 Console.Write("\n		+---+---+---+			+---+---+---+\n		|");
                 for(x = 0; x < 3; x++)
                 {
-                    if (grille[y,x] == 1)
-                    {
-                        Console.Write(" O |");
-                    }
-                    else
-                    {
-                        if (grille[y,x] == 2)
-                        {
-                            Console.Write(" X |");
-                        }
-                        else
-                        {
-                            if (grille[y,x] == 0)
-                            {
-                                Console.Write("   |");
-                            }
-                        }
-                    }
+                    string test = GetSymbole(((Symbole)grille[y,x]).ToString());
+                    Console.Write(" " + test + " |");
+                    // if (grille[y,x] == 1)
+                    // {
+                    //     Console.Write(" O |");
+                    // }
+                    // else
+                    // {
+                    //     if (grille[y,x] == 2)
+                    //     {
+                    //         Console.Write(" X |");
+                    //     }
+                    //     else
+                    //     {
+                    //         if (grille[y,x] == 0)
+                    //         {
+                    //             Console.Write("   |");
+                    //         }
+                    //     }
+                    // }
                 }
                 Console.Write("			|");
                 for (x = 0; x < 3; x++)
