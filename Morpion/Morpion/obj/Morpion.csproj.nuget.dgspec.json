@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\flori\\Desktop\\CS\\Morpion\\Morpion\\Morpion.csproj": {}
+    "C:\\Users\\flori\\Desktop\\CS\\cs-rendu\\Morpion\\Morpion\\Morpion.csproj": {}
   },
   "projects": {
-    "C:\\Users\\flori\\Desktop\\CS\\Morpion\\Morpion\\Morpion.csproj": {
+    "C:\\Users\\flori\\Desktop\\CS\\cs-rendu\\Morpion\\Morpion\\Morpion.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\flori\\Desktop\\CS\\Morpion\\Morpion\\Morpion.csproj",
+        "projectUniqueName": "C:\\Users\\flori\\Desktop\\CS\\cs-rendu\\Morpion\\Morpion\\Morpion.csproj",
         "projectName": "Morpion",
-        "projectPath": "C:\\Users\\flori\\Desktop\\CS\\Morpion\\Morpion\\Morpion.csproj",
+        "projectPath": "C:\\Users\\flori\\Desktop\\CS\\cs-rendu\\Morpion\\Morpion\\Morpion.csproj",
         "packagesPath": "C:\\Users\\flori\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\flori\\Desktop\\CS\\Morpion\\Morpion\\obj\\",
+        "outputPath": "C:\\Users\\flori\\Desktop\\CS\\cs-rendu\\Morpion\\Morpion\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
