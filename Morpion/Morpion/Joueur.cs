@@ -21,13 +21,21 @@ public class Joueur
     public void AppuiTouche()
     {
         this.Touche = 0;
+        Console.Write($"A {this.Name} de saisir un nombre entre 1 et 9 : ");
         while (this.Touche == 0)
         {
-            Console.Write($"{this.Name}, tapes une touche entre 1 et 9 : ");
-            this.Touche = int.Parse(Console.ReadLine());
+            try
+            {
+                this.Touche = Convert.ToInt16(Console.ReadLine());
+            }
+            catch
+            {
+                Console.Write("Vous n'avez pas saisi un nombre entier.\nSaisissez le nombre : ");
+                continue;
+            }
             if ((this.Touche > 9) || (this.Touche < 1))
             {
-                Console.Write("La touche doit etre entre 1 et 9.\n");
+                Console.Write("Vous n'avez pas saisi un nombre entre 1 et 9.\nSaisissez le nombre : ");
                 this.Touche = 0;
             }
         }

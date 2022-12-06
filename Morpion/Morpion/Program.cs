@@ -7,7 +7,8 @@ namespace Morpion
         private static void Main(string[] args)
         {
             Console.Title = "Morpion";
-            
+            Console.Clear();
+
             Joueur joueur1 = new Joueur();
             joueur1.Numero = 1;
             Console.Write("Entrez le nom du joueur 1 : ");
@@ -24,20 +25,22 @@ namespace Morpion
             int joueurEnCours = 0;
 
             int[,] grilleMorpion = new int[3, 3] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
-            Affichage.Afficher(grilleMorpion, joueurs, joueurEnCours);
             
             bool jeu = true;
             while(jeu == true)
             {
                 
                 bool partie = false;
-                Console.Write($"Pour jouer tapez 'Oui' : ");
-                if (Console.ReadLine() == "Oui")
+
+                Affichage.Afficher(grilleMorpion, joueurs, joueurEnCours);
+                Console.Write($"Pour jouer tapez : J\nPour quitter tapez : Q\n\nJ ou Q : ");
+                input = Console.ReadLine();
+                if (input == "J")
                 {
                     partie = true;
                     grilleMorpion = new int[3, 3] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
                 }
-                else
+                else if (input == "Q")
                 {
                     Environment.Exit(0);
                 }
@@ -84,7 +87,7 @@ namespace Morpion
                         }
                         else
                         {
-                            Console.WriteLine("La touche est invalide");
+                            Console.WriteLine("Vous avez choisi une case deja rempli.");
                         }
                     }
                 }
