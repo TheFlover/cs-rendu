@@ -1,11 +1,14 @@
-using Microsoft.EntityFrameworkCore; 
+using Database;
+using Microsoft.EntityFrameworkCore;
 
-public class WebApiDbContext: DbContext 
+namespace api.Context
 {
-    public WebApiDbContext(DbContextOptions<WebApiDbContext> options) : base(options) 
+    public class ApplicationDbContext: DbContext
     {
-        
-    }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options) { 
+        }
 
-    public DbSet<Hero> Heroes { get; set; }
+        public DbSet<Hero> Heroes{ get; set; }
+
+    }
 }
