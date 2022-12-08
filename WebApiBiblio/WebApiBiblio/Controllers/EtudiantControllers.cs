@@ -17,22 +17,34 @@ namespace WebApiBiblio.Controllers
             this.dbContext = dbContext;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet("GetEtudiants")]
+        public async Task<ActionResult<List<Etudiant>>> Get()
         {
             return Ok(await dbContext.Etudiants.ToListAsync());
         }
 
-        [HttpPost]
-        public async Task<ActionResult<List<Etudiant>>> CreateEtudiant([FromBody] Etudiant etudiant)
+        [HttpGet("GetEtudiant/{id}")]
+        public async Task<ActionResult> GetEtudiant(int id)
+        {
+            var etudiant = await this.dbContext.Etudiants.FindAsync(id);
+            if (etudiant == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(etudiant);
+        }
+
+        [HttpPost("AddEtudiant")]
+        public async Task<ActionResult<Etudiant>> CreateEtudiant([FromBody] Etudiant etudiant)
         {
             await dbContext.Etudiants.AddAsync(etudiant);
 
             return Ok(dbContext.Etudiants);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<List<Etudiant>>> UpdateEtudiant(Etudiant request)
+        [HttpPatch("UpdateEtudiant/{id}")]
+        public async Task<ActionResult<Etudiant>> UpdateEtudiant(Etudiant request)
         {
             var etudiant = await this.dbContext.Etudiants.FindAsync(request.EtudiantId);
             if (etudiant == null)
@@ -45,17 +57,22 @@ namespace WebApiBiblio.Controllers
             etudiant.Naissance = request.Naissance;
             etudiant.Telephone = request.Telephone;
 
+            dbContext.Etudiants.Update(etudiant);
+            await dbContext.SaveChangesAsync();
             return Ok(etudiant);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Etudiant>> Get(int id)
+        [HttpDelete("RemoveEtudiant/{id}")]
+        public async Task<ActionResult> DeleteEtudiant(int id)
         {
-            var etudiant = await dbContext.Etudiants.FindAsync(request.EtudiantId);
+            var etudiant = await this.dbContext.Etudiants.FindAsync(id);
             if (etudiant == null)
             {
-                return NotFound("Etudiant not Found");
+                return BadRequest();
             }
+
+            dbContext.Etudiants.Remove(etudiant);
+            await dbContext.SaveChangesAsync();
             return Ok(etudiant);
         }
     }
