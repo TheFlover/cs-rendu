@@ -1,0 +1,7 @@
+C:\Users\flori\Desktop\CS\cs-rendu\WebApiBiblio\WebApiBiblio\obj\Debug\net6.0\WebApiBiblio.csproj.AssemblyReference.cache
+C:\Users\flori\Desktop\CS\cs-rendu\WebApiBiblio\WebApiBiblio\obj\Debug\net6.0\WebApiBiblio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\flori\Desktop\CS\cs-rendu\WebApiBiblio\WebApiBiblio\obj\Debug\net6.0\WebApiBiblio.AssemblyInfoInputs.cache
+C:\Users\flori\Desktop\CS\cs-rendu\WebApiBiblio\WebApiBiblio\obj\Debug\net6.0\WebApiBiblio.AssemblyInfo.cs
+C:\Users\flori\Desktop\CS\cs-rendu\WebApiBiblio\WebApiBiblio\obj\Debug\net6.0\WebApiBiblio.csproj.CoreCompileInputs.cache
+C:\Users\flori\Desktop\CS\cs-rendu\WebApiBiblio\WebApiBiblio\obj\Debug\net6.0\WebApiBiblio.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\flori\Desktop\CS\cs-rendu\WebApiBiblio\WebApiBiblio\obj\Debug\net6.0\WebApiBiblio.MvcApplicationPartsAssemblyInfo.cache
