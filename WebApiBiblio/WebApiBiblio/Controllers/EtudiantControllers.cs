@@ -38,24 +38,29 @@ namespace WebApiBiblio.Controllers
         [HttpPost("AddEtudiant")]
         public async Task<ActionResult<Etudiant>> CreateEtudiant([FromBody] Etudiant etudiant)
         {
-            await dbContext.Etudiants.AddAsync(etudiant);
+            var Uri = await dbContext.Etudiants.AddAsync(etudiant);
+            await dbContext.SaveChangesAsync();
 
-            return Ok(dbContext.Etudiants);
+            //return Created( etudiant);
+            return Ok();
         }
 
+
+        // Verifie les differences entre PUT et PATCH 
+        //PUT ecrase tandis que patch permet une modification partielle
         [HttpPatch("UpdateEtudiant/{id}")]
-        public async Task<ActionResult<Etudiant>> UpdateEtudiant(Etudiant request)
+        public async Task<ActionResult<Etudiant>> UpdateEtudiant(int id, [FromBody] Etudiant etudiant)
         {
-            var etudiant = await this.dbContext.Etudiants.FindAsync(request.EtudiantId);
+            var entityEtudiant = await this.dbContext.Etudiants.FindAsync(id);
             if (etudiant == null)
             {
-                return BadRequest(request);
+                return BadRequest();
             }
 
-            etudiant.Nom = request.Nom;
-            etudiant.Prenom = request.Prenom;
-            etudiant.Naissance = request.Naissance;
-            etudiant.Telephone = request.Telephone;
+            entityEtudiant.Nom = etudiant.Nom == null ? entityEtudiant.Nom : etudiant.Nom;
+            entityEtudiant.Prenom = etudiant.Prenom == null ? entityEtudiant.Prenom : etudiant.Prenom;
+            entityEtudiant.Naissance = etudiant.Naissance == null ? entityEtudiant.Naissance : etudiant.Naissance;
+            entityEtudiant.Telephone = etudiant.Telephone == null ? entityEtudiant.Telephone : etudiant.Telephone;
 
             dbContext.Etudiants.Update(etudiant);
             await dbContext.SaveChangesAsync();
@@ -73,7 +78,7 @@ namespace WebApiBiblio.Controllers
 
             dbContext.Etudiants.Remove(etudiant);
             await dbContext.SaveChangesAsync();
-            return Ok(etudiant);
+            return Ok();
         }
     }
 }

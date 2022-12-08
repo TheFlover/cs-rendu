@@ -21,6 +21,6 @@ namespace Database
         public DateTime Naissance { get; set; }
 
         [MaxLength(15)]
-        public int Telephone { get; set; }
+        public string Telephone { get; set; } = string.Empty;
     }
 }
