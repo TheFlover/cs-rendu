@@ -41,31 +41,42 @@ namespace WebApiBiblio.Controllers
             var Uri = await dbContext.Etudiants.AddAsync(etudiant);
             await dbContext.SaveChangesAsync();
 
-            //return Created( etudiant);
-            return Ok();
+            return CreatedAtAction(nameof(GetEtudiant), new { id = etudiant.EtudiantId }, etudiant);
         }
 
 
         // Verifie les differences entre PUT et PATCH 
         //PUT ecrase tandis que patch permet une modification partielle
-        [HttpPatch("UpdateEtudiant/{id}")]
-        public async Task<ActionResult<Etudiant>> UpdateEtudiant(int id, [FromBody] Etudiant etudiant)
+        [HttpPut("PutEtudiant/{id}")]
+    public async Task<IActionResult> PutEtudiant(int id, Etudiant etudiant)
+    {
+        if (id != etudiant.EtudiantId)
         {
-            var entityEtudiant = await this.dbContext.Etudiants.FindAsync(id);
-            if (etudiant == null)
-            {
-                return BadRequest();
-            }
-
-            entityEtudiant.Nom = etudiant.Nom == null ? entityEtudiant.Nom : etudiant.Nom;
-            entityEtudiant.Prenom = etudiant.Prenom == null ? entityEtudiant.Prenom : etudiant.Prenom;
-            entityEtudiant.Naissance = etudiant.Naissance == null ? entityEtudiant.Naissance : etudiant.Naissance;
-            entityEtudiant.Telephone = etudiant.Telephone == null ? entityEtudiant.Telephone : etudiant.Telephone;
-
-            dbContext.Etudiants.Update(etudiant);
-            await dbContext.SaveChangesAsync();
-            return Ok(etudiant);
+            return BadRequest();
         }
+
+        var entityEtudiant = await dbContext.Etudiants.FindAsync(id);
+        if (entityEtudiant == null)
+        {
+            return NotFound();
+        }
+
+        entityEtudiant.Nom = etudiant.Nom;
+        entityEtudiant.Prenom = etudiant.Prenom;
+        entityEtudiant.Naissance = etudiant.Naissance;
+        entityEtudiant.Telephone = etudiant.Telephone;
+
+        try
+        {
+            await dbContext.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException) when (!TodoItemExists(id))
+        {
+            return NotFound();
+        }
+
+        return NoContent();
+    }
 
         [HttpDelete("RemoveEtudiant/{id}")]
         public async Task<ActionResult> DeleteEtudiant(int id)
@@ -73,12 +84,17 @@ namespace WebApiBiblio.Controllers
             var etudiant = await this.dbContext.Etudiants.FindAsync(id);
             if (etudiant == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             dbContext.Etudiants.Remove(etudiant);
             await dbContext.SaveChangesAsync();
-            return Ok();
+            return NoContent();
         }
+
+        private bool TodoItemExists(int id)
+    {
+        return dbContext.Etudiants.Any(etudiant => etudiant.EtudiantId == id);
+    }
     }
 }
